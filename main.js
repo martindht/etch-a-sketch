@@ -1,8 +1,9 @@
 let color = 'black';
+let click = true;
 
 function createBoard(size) {
     let board = document.querySelector('.board');
-    let squares = board.querySelectorAll('.div');
+    let squares = board.querySelectorAll('div');
     squares.forEach((div) => div.remove());
     board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     board.style.gridTemplateRows = `repeat(${size},1fr)`;
@@ -20,21 +21,21 @@ createBoard(16)
 function changeSize(input) {
     if (input>=2 && input<=100) {
         createBoard(input);
+        document.querySelector('.result').textContent = "";
     }
     else {
-        const resultDiv = document.querySelector('#result')
-        return resultDiv.textContent = "Number has to be between 1 and 100."
+        document.querySelector('.result').textContent = "Number has to be between 2 and 100.";
     }
-
 }
 
 function colorSquare() {
-    if(color === 'random') {
-        this.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
-    } else {
-        this.style.backgroundColor= color;
+    if (click) {
+        if(color === 'random') {
+            this.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+        } else {
+            this.style.backgroundColor= color;
+        }
     }
-
 }
 
 function changeColor(choice) {
@@ -43,9 +44,18 @@ function changeColor(choice) {
 
 function resetBoard() {
     let board = document.querySelector('.board');
-    let squares = board.querySelectorAll('.div');
+    let squares = board.querySelectorAll('div');
     squares.forEach((div) => div.style.backgroundColor = 'white');
-
 }
 
+document.querySelector('body').addEventListener('click', (e) => {
+    if(e.target.tagname != 'BUTTON') {
+        click = !click;
+        if (click) {
+            document.querySelector('.mode').textContent = "Mode: Coloring";
+        } else {
+            document.querySelector('.mode').textContent = "Mode: Not Coloring";  
+        }
+    }
+});
 
