@@ -21,10 +21,10 @@ createBoard(16)
 function changeSize(input) {
     if (input>=2 && input<=100) {
         createBoard(input);
-        document.querySelector('.result').textContent = "";
+        document.querySelector('.error').style.display = 'none';
     }
-    else {
-        document.querySelector('.result').textContent = "Number has to be between 2 and 100.";
+    else { 
+        document.querySelector('.error').style.display = "flex";
     }
 }
 
@@ -49,7 +49,7 @@ function resetBoard() {
 }
 
 document.querySelector('body').addEventListener('click', (e) => {
-    if(e.target.tagname != 'BUTTON') {
+    if(e.target.tagName != 'BUTTON' && e.target.tagName != 'INPUT') {
         click = !click;
         if (click) {
             document.querySelector('.mode').textContent = "Mode: Coloring";

@@ -89,9 +89,10 @@ input {
 
 .mode {
     margin-bottom: 8px;
-    font-family: 'Courier New', monospace; ;
+    font-family: 'Courier New', monospace;
 }
 
 .error {
     display: none;
+    font-family: 'Courier New', monospace;
 }
